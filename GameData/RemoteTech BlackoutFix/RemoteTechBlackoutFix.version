@@ -1,6 +1,6 @@
 {
     "NAME": "RemoteTech BlackoutFix",
-    "URL": "https://github.com/NovaSpem/RemoteTechBlackoutFix/raw/refs/heads/main/GameData/RemoteTech%20BlackoutFix/RemoteTechBlackoutFix.version",
+    "URL": "https://raw.githubusercontent.com/NovaSpem/RemoteTechBlackoutFix/refs/heads/main/GameData/RemoteTech%20BlackoutFix/RemoteTechBlackoutFix.version",
     "DOWNLOAD": "https://github.com/NovaSpem/RemoteTechBlackoutFix/releases",
     "VERSION": {
         "MAJOR": 1,
