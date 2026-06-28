@@ -22,5 +22,10 @@ Parameters:
 - `showMessages` - Show on-screen messages
 - `debugLog` - Debug logging
 
+## Installation
+1. Install RemoteTech and Firefly
+2. Download the latest version from [Releases](https://github.com/NovaSpem/RemoteTechBlackoutFix/releases)
+3. Unzip the contents into the `GameData` folder
+
 ## License
 MIT
