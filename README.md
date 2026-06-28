@@ -1,6 +1,6 @@
 #RemoteTech BlackoutFix
 
-A fix-mod for Kerbal Space Program that adds realistic attenuation to RemoteTech's radio signal upon re-entry into the atmosphere.
+A fix for Kerbal Space Program that adds realistic attenuation to RemoteTech's radio signal upon re-entry into the atmosphere.
 
 ## Features
 - Firefly integration for plasma intensity detection
