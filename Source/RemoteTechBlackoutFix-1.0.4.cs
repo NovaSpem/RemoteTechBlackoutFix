@@ -29,7 +29,7 @@ namespace RemoteTechBlackoutFix
         private static MethodInfo getEntryStrengthMethod = null;
         private static bool fireflyDetectionAttempted = false;
 
-        private float plasmaMinValue = 350f;
+        private float plasmaMinValue = 400f;
         private float plasmaMaxValue = 2000f;
 
         private static Dictionary<string, float> factoryRangeCache = new Dictionary<string, float>();
@@ -87,7 +87,7 @@ namespace RemoteTechBlackoutFix
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.LogError(string.Format("[RTPlasmaFix] Ошибка загрузки конфига: {0}", ex.Message));
+                UnityEngine.Debug.LogError(string.Format("[RTPlasmaFix] Error load cfg: {0}", ex.Message));
             }
         }
 
@@ -167,8 +167,11 @@ namespace RemoteTechBlackoutFix
                     var mod = vessel.vesselModules[i];
                     if (mod != null && fireflyModuleType.IsAssignableFrom(mod.GetType()))
                     {
-                        fireflyModule = mod;
-                        break;
+                        if (IsFireflyModuleReady(mod))
+                        {
+                            fireflyModule = mod;
+                            break;
+                        }
                     }
                 }
 
@@ -181,10 +184,31 @@ namespace RemoteTechBlackoutFix
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.LogWarning(string.Format("[RTPlasmaFix] Error retrieving Firefly data: {0}", ex.Message));
+				        if (debugLog)
+        {
+            UnityEngine.Debug.LogWarning(string.Format("[RTPlasmaFix] Error retrieving Firefly data: {0}", ex.Message));
+        }
             }
 
             return 0f;
+        }
+
+        private bool IsFireflyModuleReady(object module)
+        {
+            try
+            {
+                var bodyField = fireflyModuleType.GetField("currentBody",
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                    
+                if (bodyField != null && bodyField.GetValue(module) != null)
+                    return true;
+            }
+            catch
+            {
+				
+            }
+            
+            return false;
         }
 
         private void CheckConnectionStatus()
